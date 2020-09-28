@@ -139,6 +139,8 @@ if level_cleared2 == True:
             Num2 = random.randint(0, 3457)
             Num3 = random.randint(0, 60)
             Num4 = random.randint(0, 76)
+if level_cleared3 == True: 
+    
 
 
 
