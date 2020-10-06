@@ -40,11 +40,9 @@ while True:
         User_Answer = float(User_Answer)
         if lives <= 0:
             Dead = True
-            score = score - score1
             break
-        if score == 17:
+        if lvl ==17:
             level_cleared = True
-            score = score - score1
             break
     except:
         pass
@@ -78,11 +76,9 @@ if level_cleared == True:
             User_Answer2 = float(User_Answer2)
             if lives <= 0:
                 Dead = True
-                score = score - score1
                 break
-            if score == 27:
+            if lvl == 27:
                 level_cleared2 = True
-                score = score - score1
                 break
         except:
             pass
@@ -90,7 +86,6 @@ if level_cleared == True:
             print("Correct!")
             lvl = lvl + 1
             score = score + 1
-            score = score - score1
             Num1 = random.randint(0, 2356)
             Num2 = random.randint(0, 3457)
         else:
@@ -98,7 +93,6 @@ if level_cleared == True:
             lvl = lvl + 1
             lives = lives - 1
             score1 = score1 + 1
-            score = score - score1
             Num1 = random.randint(0, 2356)
             Num2 = random.randint(0, 3457)
 
@@ -116,11 +110,9 @@ if level_cleared2 == True:
             User_Answer3 = float(User_Answer3)
             if lives <= 0:
                 Dead = True
-                score = score - score1
                 break
-            if score == 37:
+            if lvl == 37:
                 level_cleared3 = True
-                score = score - score1
                 break
         except:
             pass
@@ -141,8 +133,6 @@ if level_cleared2 == True:
             Num2 = random.randint(0, 3457)
             Num3 = random.randint(0, 60)
             Num4 = random.randint(0, 76)
-if level_cleared3 == True: 
-    
 
 if level_cleared3 == True:
     a = random.randint(0, 2356)
@@ -156,13 +146,12 @@ if level_cleared3 == True:
             User_Answer4 = float(User_Answer4)
             if lives <= 0:
                 Dead = True
-                score = score - score1
                 break
-            if score == 50:
+            if lvl == 50:
                 level_cleared4 = True
-                score = score - score1
                 break
             if level_cleared and level_cleared2 and level_cleared3 and level_cleared4 == True:
+                score = score - score1
                 Win = True
                 break
         except:
@@ -171,7 +160,6 @@ if level_cleared3 == True:
             print("Correct!")
             lvl = lvl + 1
             score = score + 1
-            score = score - score1
             a = random.randint(0, 2356)
             b = random.randint(0, 3457)
         else:
@@ -182,18 +170,12 @@ if level_cleared3 == True:
             a = random.randint(0, 2356)
             b = random.randint(0, 3457)
 
-
-
-
-
-
-
-
-
 if Dead == True:
-    print("welldone you got "+ str(score) + "\50")
+    score = score - score1
+    print(str("welldone you got ")+ str(score) + str("\50"))
 if Win == True:
-    print("welldone you got "+ str(score) + "\50")
+    score = score - score1
+    print(str("welldone you got ")+ str(score) + str("\50"))
     
 
 
