@@ -33,7 +33,8 @@ ops = random.choice(Operations)
   
 while True:
     answer = round(eval(str(Num1) + ops + str(Num2)),2)
-    print (answer) #for debugging
+    if Player_Name == 'debug':
+        print (answer) #for debugging
     question = (str(Num1)+ ' ' + ops + ' ' + str(Num2))
     User_Answer = input("Question"+ str(lvl)+': '+str(question)+ ': ')
     try:
@@ -70,7 +71,8 @@ if level_cleared == True:
         answer2 = math.sqrt(Num2)
         question = (str(u"\u221a") + str(Num1) + '+' + str(u"\u221a") + str(Num2))
         final_answer = round((answer + answer2),2)
-        print (final_answer) ##for debugging
+        if Player_Name == 'debug':
+            print (final_answer) ##for debugging
         User_Answer2 = input("Question"+ str(lvl)+': '+str(question)+ ': ')
         try:
             User_Answer2 = float(User_Answer2)
@@ -103,7 +105,8 @@ if level_cleared2 == True:
     Num4 = random.randint(0, 76)
     while True:
         final_answer = round((Num3 / Num4*Num2 + Num1),2)
-        print (final_answer) #for debugging
+        if Player_Name == 'debug':
+            print (final_answer) #for debugging
         question = (str(Num3) + '÷' + str(Num4) + '(' + str(Num2) + '+' + str(Num1) + ')')
         User_Answer3 = input("Question"+ str(lvl)+': '+str(question)+ ': ')
         try:
@@ -140,7 +143,8 @@ if level_cleared3 == True:
     while True:
         final_answer = round(math.sqrt(a * a + b * b),2)
         question = (str(a) + str(u'\u00b2') + '+' + str(b) + str(u'\u00b2'))
-        print(final_answer) #for debugging
+        if Player_Name == 'debug':
+            print(final_answer) #for debugging
         User_Answer4 = input("Question"+ str(lvl)+': '+str(question)+ ': ')
         try:
             User_Answer4 = float(User_Answer4)
@@ -172,10 +176,7 @@ if level_cleared3 == True:
 
 if Dead == True:
     score = score - score1
-    print(str("welldone you got ")+ str(score) + str("\50"))
+    print(str("welldone") + str(Player_Name) + ("you got ")+ str(score) + str("\50"))
 if Win == True:
     score = score - score1
-    print(str("welldone you got ")+ str(score) + str("\50"))
-    
-
-
+    print(str("welldone") + str(Player_Name) + ("you got ")+ str(score) + str("\50"))
