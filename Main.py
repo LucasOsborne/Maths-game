@@ -4,7 +4,7 @@ from decimal import Decimal
 import math
 score = 0
 score1 = 0
-lives = 5
+lives = 3
 level_cleared = False
 level_cleared2 = False
 level_cleared3 = False
@@ -14,6 +14,7 @@ Dead = False
 lvl = 1
 Operations = ["*" , "+" , "-" , "/"]
 Player_Name = input("WELCOME to my maths game please enter your name: ")
+time.sleep(1)
 while True:
     Start_Game = input("Press enter to start")
     try:
@@ -25,12 +26,13 @@ while True:
     print("Thats not enter!")
 time.sleep(1)
 print("""Here are the rules:
-    DO maths thats all just maths please\n""")
+   1. DO maths thats all just maths please
+   2. Any decimals are rounded to 2 d.p
+   3. There are negative numbers
+   4. You can use a calculator\n""")
 Num1 = random.randint(0, 2356)
 Num2 = random.randint(0, 3457)
 ops = random.choice(Operations)
-    
-  
 while True:
     answer = round(eval(str(Num1) + ops + str(Num2)),2)
     if Player_Name == 'debug':
@@ -140,9 +142,12 @@ if level_cleared2 == True:
 if level_cleared3 == True:
     a = random.randint(0, 2356)
     b = random.randint(0, 3457)
+    ops = random.choice(Operations)
     while True:
-        final_answer = round(math.sqrt(a * a + b * b),2)
-        question = (str(a) + str(u'\u00b2') + '+' + str(b) + str(u'\u00b2'))
+        LA1 = a * a
+        LA2 = b * b
+        final_answer = round(math.sqrt(eval(str(LA1) + ops + str(LA2))),2)
+        question = (str(a) + str(u'\u00b2') + str(ops) + str(b) + str(u'\u00b2'))
         if Player_Name == 'debug':
             print(final_answer) #for debugging
         User_Answer4 = input("Question"+ str(lvl)+': '+str(question)+ ': ')
@@ -151,7 +156,7 @@ if level_cleared3 == True:
             if lives <= 0:
                 Dead = True
                 break
-            if lvl == 50:
+            if lvl >= 50:
                 level_cleared4 = True
                 break
             if level_cleared and level_cleared2 and level_cleared3 and level_cleared4 == True:
@@ -166,6 +171,7 @@ if level_cleared3 == True:
             score = score + 1
             a = random.randint(0, 2356)
             b = random.randint(0, 3457)
+            ops = random.choice(Operations)
         else:
             print("Wrong answer!")
             lvl = lvl + 1
@@ -173,10 +179,27 @@ if level_cleared3 == True:
             score1 = score1 + 1
             a = random.randint(0, 2356)
             b = random.randint(0, 3457)
+            ops = random.choice(Operations)
 
 if Dead == True:
     score = score - score1
+    f = open("leaderboard.txt", "a")
+    f.write("Name: "+ str(Player_Name) + "score: " + str(score) + "\n")
+    f.close()
+
+    #open and read the file after the appending:
+    f = open("leaderboard.txt", "r")
+    print(f.read())
+    f.close()
     print(str("welldone") + str(Player_Name) + ("you got ")+ str(score) + str("\50"))
 if Win == True:
     score = score - score1
+    f = open("leaderboard.txt", "a")
+    f.write("Name: "+ str(Player_Name) + "score: " + str(score) + "\n")
+    f.close()
+
+    #open and read the file after the appending:
+    f = open("leaderboard.txt", "r")
+    print(f.read())
+    f.close()
     print(str("welldone") + str(Player_Name) + ("you got ")+ str(score) + str("\50"))
