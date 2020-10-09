@@ -141,8 +141,6 @@ if level_cleared2 == True:
             Num2 = random.randint(0, 3457)
             Num3 = random.randint(0, 60)
             Num4 = random.randint(0, 76)
-if level_cleared3 == True: 
-    
 
 if level_cleared3 == True:
     a = random.randint(0, 2356)
@@ -181,11 +179,6 @@ if level_cleared3 == True:
             score1 = score1 + 1
             a = random.randint(0, 2356)
             b = random.randint(0, 3457)
-
-
-
-
-
 
 
 
