@@ -26,6 +26,15 @@ while True:
         break
     print("Thats not enter!")
 time.sleep(1)
+if Player_Name == "debug":
+    level_cleared = True
+    level_cleared2 = True
+    level_cleared3 = True
+    level_cleared4 = True
+    Win = True
+    lvl = 50
+    score =50
+    score1 = 0
 #prints out the rules
 print("""Here are the rules:
    1. DO maths thats all just maths please
