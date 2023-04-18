@@ -1,227 +1,190 @@
-#imports all the modules needed
-import time 
+import time
 import random
-from decimal import Decimal
 import math
+
 score = 0
 score1 = 0
 lives = 3
-level_cleared = False
-level_cleared2 = False
-level_cleared3 = False
-level_cleared4 = False
+lvl = 1
+Operations = ["*", "+", "-", "/"]
+Player_Name = input("WELCOME to my maths game, please enter your name: ")
+leaderboard = []
+
+while True:
+    start_game = input("Press Enter to start")
+    if start_game == "":
+        break
+    print("That's not Enter!")
+    time.sleep(1)
+
+# Level clearance flags
+level_cleared = [False] * 4
 Win = False
 Dead = False
-lvl = 1
-Operations = ["*" , "+" , "-" , "/"]#operators in a list for a random script
-Player_Name = input("WELCOME to my maths game please enter your name: ")#player name
-time.sleep(1)
-while True:
-    Start_Game = input("Press enter to start")
-    try:
-        Start_Game = str(Start_Game)
-    except:
-        pass
-    if Start_Game == "":
-        break
-    print("Thats not enter!")
-time.sleep(1)
-if Player_Name == "debug":
-    level_cleared = True
-    level_cleared2 = True
-    level_cleared3 = True
-    level_cleared4 = True
-    Win = True
-    lvl = 50
-    score =50
-    score1 = 0
-#prints out the rules
-print("""Here are the rules:
-   1. DO maths thats all just maths please
-   2. Any decimals are rounded to 2 d.p
-   3. There are negative numbers
-   4. You can use a calculator\n""")
-Num1 = random.randint(0, 2356)#selects random number 0 - 2356
-Num2 = random.randint(0, 3457)#selects random number 0 - 3457
-ops = random.choice(Operations)#selects random operator
-while True:
-    answer = round(eval(str(Num1) + ops + str(Num2)),2)#This evaluates Num1 with a random operatior with Num2 
-    if Player_Name == 'debug':
-        print (answer) #for debugging
-    question = (str(Num1)+ ' ' + ops + ' ' + str(Num2))
-    User_Answer = input("Question"+ str(lvl)+': '+str(question)+ ': ')#gets user input
-    try:
-        User_Answer = float(User_Answer)
-        #checks if they are alive
-        if lives <= 0:
-            Dead = True
-            break
-        #script that checks what level they are on
-        if lvl ==17:
-            level_cleared = True
-            break
-    except:
-        pass
-    if User_Answer == (round(answer, 2)):
-        print("Correct!")
-        lvl = lvl + 1
-        score = score + 1
-        Num1 = random.randint(0, 2356)#selects random number
-        Num2 = random.randint(0, 3457)#selects random number
-        ops = random.choice(Operations)#selects random operator
+
+print("""Here are the rules: 
+   1. Any decimals are rounded to 2 d.p.
+   2. There are negative numbers.
+   3. You can use a calculator.\n""")
+
+
+def generate_question():
+    num1 = random.randint(0, 2356)
+    num2 = random.randint(0, 3457)
+    op = random.choice(Operations)
+    answer = round(eval(str(num1) + op + str(num2)), 2)
+    return num1, num2, op, answer
+
+
+def level_1():
+    global lvl, score, score1, lives, Dead, level_cleared
+    num1, num2, op, answer = generate_question()
+    while True:
+        question = f"Question {lvl}: {num1} {op} {num2}"
+        user_answer = input(question + ": ")
+        try:
+            user_answer = float(user_answer)
+        except ValueError:
+            continue
+        if user_answer == answer:
+            print("Correct!")
+            lvl += 1
+            score += 1
+            num1, num2, op, answer = generate_question()
+            if lvl == 17:
+                level_cleared[0] = True
+                break
+        else:
+            print("Wrong answer!")
+            lvl += 1
+            lives -= 1
+            score1 += 1
+            num1, num2, op, answer = generate_question()
+            if lives <= 0:
+                Dead = True
+                break
+
+
+def level_2():
+
+    global lvl, score, score1, lives, Dead, level_cleared
+    num1, num2 = random.randint(0, 2356), random.randint(0, 3457)
+    while True:
+        answer = round((math.sqrt(num1) + math.sqrt(num2)), 2)
+        question = f"Question {lvl}: √{num1} + √{num2}"
+        user_answer = input(question + ": ")
+        try:
+            user_answer = float(user_answer)
+        except ValueError:
+            continue
+        if user_answer == answer:
+            print("Correct!")
+            lvl += 1
+            score += 1
+            num1, num2 = random.randint(0, 2356), random.randint(0, 3457)
+            if lvl == 34:
+                level_cleared[1] = True
+                break
+        else:
+            print("Wrong answer!")
+            lvl += 1
+            lives -= 1
+            score1 += 1
+            num1, num2 = random.randint(0, 2356), random.randint(0, 3457)
+            if lives <= 0:
+                Dead = True
+                break
+
+
+def level_3():
+
+    global lvl, score, score1, lives, Dead, level_cleared
+    num1, num2, op, answer = generate_question()
+    while True:
+        question = f"Question {lvl}: {num1} {op} {num2}"
+        user_answer = input(question + ": ")
+        try:
+            user_answer = float(user_answer)
+        except ValueError:
+            continue
+        if user_answer == answer:
+            print("Correct!")
+            lvl += 1
+            score += 1
+            num1, num2, op, answer = generate_question()
+            if lvl == 51:
+                level_cleared[2] = True
+                break
+        else:
+            print("Wrong answer!")
+            lvl += 1
+            lives -= 1
+            score1 += 1
+            num1, num2, op, answer = generate_question()
+            if lives <= 0:
+                Dead = True
+                break
+
+
+def level_4():
+
+    global lvl, score, score1, lives, Dead, level_cleared
+    num1, num2, op, answer = generate_question()
+    while True:
+        question = f"Question {lvl}: {num1} {op} {num2}"
+        user_answer = input(question + ": ")
+        try:
+            user_answer = float(user_answer)
+        except ValueError:
+            continue
+        if user_answer == answer:
+            print("Correct!")
+            lvl += 1
+            score += 1
+            num1, num2, op, answer = generate_question()
+            if lvl == 68:
+                level_cleared[3] = True
+                break
+        else:
+            print("Wrong answer!")
+            lvl += 1
+            lives -= 1
+            score1 += 1
+            num1, num2, op, answer = generate_question()
+            if lives <= 0:
+                Dead = True
+                break
+# Game loop
+
+
+while not Win and not Dead:
+    if not level_cleared[0]:
+        level_1()
+    if not level_cleared[1]:
+        level_2()
+    if not level_cleared[2]:
+        level_3()
+    if not level_cleared[3]:
+        level_4()
+    # Game over
+
+    if Win:
+        print(f"Congratulations, {Player_Name}! You have completed the game!")
     else:
-        print("Wrong answer!")
-        lvl = lvl + 1
-        lives = lives - 1
-        score1 = score1 + 1
-        Num1 = random.randint(0, 2356)#selects random number
-        Num2 = random.randint(0, 3457)#selects random number
-        ops = random.choice(Operations)#selects random operator
-    
-if level_cleared == True:#actives the script 
-    Num1 = random.randint(0, 2356)
-    Num2 = random.randint(0, 3457)
-    while True:
-        answer = math.sqrt(Num1)
-        answer2 = math.sqrt(Num2)
-        question = (str(u"\u221a") + str(Num1) + '+' + str(u"\u221a") + str(Num2))
-        final_answer = round((answer + answer2),2)
-        if Player_Name == 'debug':
-            print (final_answer) ##for debugging
-        User_Answer2 = input("Question"+ str(lvl) +': '+ str(question) + ': ')#gets user input
-        try:
-            User_Answer2 = float(User_Answer2)
-            #checks if they are alive
-            if lives <= 0:
-                Dead = True
-                break
-            #script that checks what level they are on
-            if lvl == 27:
-                level_cleared2 = True
-                break
-        except:
-            pass
-        if User_Answer2 == final_answer:
-            print("Correct!")
-            lvl = lvl + 1
-            score = score + 1
-            Num1 = random.randint(0, 2356)#selects random number
-            Num2 = random.randint(0, 3457)#selects random number
-        else:
-            print("Wrong answer!")
-            lvl = lvl + 1
-            lives = lives - 1
-            score1 = score1 + 1
-            Num1 = random.randint(0, 2356)#selects random number
-            Num2 = random.randint(0, 3457)#selects random number
+        print(f"Sorry, {Player_Name}, you lost! Better luck next time!")
+        # Add score to leaderboard
 
-if level_cleared2 == True:#actives the script 
-    Num1 = random.randint(0, 2356)#selects random number
-    Num2 = random.randint(0, 3457)#selects random number
-    Num3 = random.randint(0, 60)#selects random number
-    Num4 = random.randint(0, 76)#selects random number
-    while True:
-        final_answer = round((Num3 / Num4*Num2 + Num1),2)
-        if Player_Name == 'debug':
-            print (final_answer) #for debugging
-        question = (str(Num3) + '÷' + str(Num4) + '(' + str(Num2) + '+' + str(Num1) + ')')
-        User_Answer3 = input("Question"+ str(lvl) +': '+ str(question) + ': ')#gets user input
-        try:
-            User_Answer3 = float(User_Answer3)
-            #checks if they are alive
-            if lives <= 0:
-                Dead = True
-                break
-            #script that checks what level they are on
-            if lvl == 37:
-                level_cleared3 = True
-                break
-        except:
-            pass
-        if User_Answer3 == final_answer:
-            print("Correct!")
-            lvl = lvl + 1
-            score = score + 1
-            Num1 = random.randint(0, 2356)#selects random number
-            Num2 = random.randint(0, 3457)#selects random number
-            Num3 = random.randint(0, 60)#selects random number
-            Num4 = random.randint(0, 76)#selects random number
-        else:
-            print("Wrong answer!")
-            lvl = lvl + 1
-            lives = lives - 1
-            score1 = score1 + 1
-            Num1 = random.randint(0, 2356)#selects random number
-            Num2 = random.randint(0, 3457)#selects random number
-            Num3 = random.randint(0, 60)#selects random number
-            Num4 = random.randint(0, 76)#selects random number
+    leaderboard.append((Player_Name, score))
+    # Sort leaderboard by score
 
-if level_cleared3 == True:#actives the script 
-    a = random.randint(0, 2356)#selects random number
-    b = random.randint(0, 3457)#selects random number
-    ops = random.choice(Operations)#selects random operator
-    while True:
-        LA1 = a * a
-        LA2 = b * b
-        final_answer = round(math.sqrt(eval(str(LA1) + ops + str(LA2))),2)#evaluate square roots then rounds 
-        question = (str(a) + str(u'\u00b2') + str(ops) + str(b) + str(u'\u00b2'))
-        if Player_Name == 'debug':
-            print(final_answer) #for debugging
-        User_Answer4 = input("Question"+ str(lvl)+': '+str(question)+ ': ')#gets user input
-        try:
-            User_Answer4 = float(User_Answer4)
-            #checks if they are alive
-            if lives <= 0:
-                Dead = True
-                break
-            #script that checks what level they are on
-            if lvl >= 50:
-                level_cleared4 = True
-                break
-            #script that checks if they have completed all the levels then calculates their final score
-            if level_cleared and level_cleared2 and level_cleared3 and level_cleared4 == True:
-                score = score - score1
-                Win = True
-                break
-        except:
-            pass
-        if User_Answer4 == final_answer:
-            print("Correct!")
-            lvl = lvl + 1
-            score = score + 1
-            a = random.randint(0, 2356)#selects random number
-            b = random.randint(0, 3457)#selects random number
-            ops = random.choice(Operations)#selects random operator
-        else:
-            print("Wrong answer!")
-            lvl = lvl + 1
-            lives = lives - 1
-            score1 = score1 + 1
-            a = random.randint(0, 2356)#selects random number
-            b = random.randint(0, 3457)#selects random number
-            ops = random.choice(Operations)#selects random operator
+    leaderboard.sort(key=lambda x: x[1], reverse=True)
+    # Print leaderboard
 
-if Dead == True:
-    #script that writes to a leaderboard.txt then prints it out
-    score = score - score1
-    f = open("leaderboard.txt", "a")
-    f.write("Name: "+ str(Player_Name) + "score: " + str(score) + "\n")
-    f.close()
+    print("\n--- Leaderboard ---")
+    for i, entry in enumerate(leaderboard):
+        print(f"{i+1}. {entry[0]}: {entry[1]} points")
+        # Save leaderboard to file
 
-    #open and read the file after the appending:
-    f = open("leaderboard.txt", "r")
-    print(f.read())
-    f.close()
-    print(str("welldone") + str(Player_Name) + ("you got ")+ str(score) + str("\50"))
-if Win == True:
-    #script that writes to a leaderboard.txt then prints it out
-    score = score - score1
-    f = open("leaderboard.txt", "a")
-    f.write("Name: "+ str(Player_Name) + "score: " + str(score) + "\n")
-    f.close()
-
-    #open and read the file after the appending:
-    f = open("leaderboard.txt", "r")
-    print(f.read())
-    f.close()
-    print(str("welldone") + str(Player_Name) + ("you got ")+ str(score) + str("\50"))
+    with open("leaderboard.txt", "w") as file:
+        for entry in leaderboard:
+            file.write(f"{entry[0]},{entry[1]}\n")
